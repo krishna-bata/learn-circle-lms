@@ -51,25 +51,33 @@ const CourseDetails = () => {
         return toast.warn("Already Enrolled");
       }
 
-      const token = await getToken();
-
-      const { data } = await axios.post(
-        backendUrl + "/api/user/purchase",
-        {
-          courseId: courseData._id,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
+      const confirmed = window.confirm(
+        "Are you sure you want to enroll this course?"
       );
 
-      if (data.success) {
-        const { session_url } = data;
-        window.location.replace(session_url);
+      if (confirmed) {
+        const token = await getToken();
+
+        const { data } = await axios.post(
+          backendUrl + "/api/user/purchase",
+          {
+            courseId: courseData._id,
+          },
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+
+        if (data.success) {
+          const { session_url } = data;
+          window.location.replace(session_url);
+        } else {
+          toast.error(data.message);
+        }
       } else {
-        toast.error(data.message);
+        toast.warn("Cancelled Enrollment !");
       }
     } catch (error) {
       toast.error(error.message);
