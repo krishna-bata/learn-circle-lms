@@ -1,15 +1,24 @@
-import React from "react";
+import React, { useState } from "react";
 import { assets } from "../../assets/assets";
+import { toast } from "react-toastify";
 
 const Footer = () => {
+  const [email, setEmail] = useState("");
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    toast.success("Successfully subscribe to newsletter");
+    setEmail("");
+  };
+
   return (
     <footer className="bg-gray-900 md:px-36 text-left w-full mt-10">
       <div className="flex flex-col md:flex-row items-start px-8 md:px-0 justify-center gap-10 md:gap-32 py-10 border-b border-white/30">
         <div className="flex flex-col md:items-start items-center w-full">
           <img src={assets.logo_dark} alt="Logo" className="w-36" />
           <p className="text-white/80 mt-6 text-center md:text-left text-sm">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo
-            obcaecati saepe, repellendus ipsam recusandae ipsum!
+            LearnCircle — A complete Learning Management System built to connect
+            students and educators through online courses.
           </p>
         </div>
         <div className="flex flex-col md:items-start items-center w-full">
@@ -36,16 +45,25 @@ const Footer = () => {
           <p className="text-sm text-white/80">
             The latest news, articles, and resources, sent to your inbox.
           </p>
-          <div className="flex items-center gap-2 pt-4">
+          <form
+            onSubmit={handleSubmit}
+            className="flex items-center gap-2 pt-4"
+          >
             <input
               className="border border-gray-500/30 bg-gray-800 text-gray-500 placeholder-gray-500 outline-none w-64 h-9 rounded px-2 text-sm"
               type="email"
+              onChange={(e) => setEmail(e.target.value)}
+              value={email}
               placeholder="Enter your email"
+              required
             />
-            <button className="bg-blue-600 w-24 h-9 text-white rounded">
+            <button
+              className="bg-blue-600 w-24 h-9 text-white rounded"
+              type="submit"
+            >
               Subscribe
             </button>
-          </div>
+          </form>
         </div>
       </div>
       <p className="py-4 text-center text-xs md:text-sm text-white/60">

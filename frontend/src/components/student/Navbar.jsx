@@ -21,21 +21,26 @@ const Navbar = () => {
         navigate("/educator");
         return;
       }
-      const token = await getToken();
-      const { data } = await axios.get(
-        backendUrl + "/api/educator/update-role",
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
+      const confirmed = window.confirm(
+        "Are you sure you want to become an educator?"
       );
 
-      if (data.success) {
-        setIsEducator(true);
-        toast.success(data.message);
-      } else {
-        toast.error(data.message);
+      if (confirmed) {
+        const token = await getToken();
+        const { data } = await axios.get(
+          backendUrl + "/api/educator/update-role",
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        if (data.success) {
+          setIsEducator(true);
+          toast.success(data.message);
+        } else {
+          toast.error(data.message);
+        }
       }
     } catch (error) {
       toast.error(error.message);
