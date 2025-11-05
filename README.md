@@ -7,7 +7,7 @@ Email : test.user@example.com
 Password : Test@User@05
 
 ## **Stripe Credentials for payment** 
-Card : 4242424242424242 
+Card Number : 4242424242424242 
 Expiry : any future date
 CVV : any 3 digit number
 
