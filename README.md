@@ -2,6 +2,15 @@
 
 🔗 **Live Demo:** [LearnCircle](https://learn-circle-lms-frontend.vercel.app/)
 
+## **Test Credentials** 
+Email : test.user@example.com  
+Password : Test@User@05
+
+## **Stripe Credentials for payment** 
+Card Number : 4242424242424242 
+Expiry : any future date
+CVV : any 3 digit number
+
 
 ## **Overview**  
 LearnCircle is a **full-featured Learning Management System (LMS)** built with the **MERN stack**. It enables learners to enroll in courses, educators to manage their content, and provides a secure payment system with **Stripe**. Also User can track progress of the enrolled courses. 
